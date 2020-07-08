@@ -91,6 +91,7 @@ const attributeExceptions = [
   }
 
 export const a = (...args) => makeElement(`a`, ...args);
+export const input = (...args) => makeElement(`input`, ...args);
 export const button = (...args) => makeElement(`button`, ...args);
 export const div = (...args) => makeElement(`div`, ...args);
 export const h1 = (...args) => makeElement(`h1`, ...args);
@@ -100,6 +101,5 @@ export const p = (...args) => makeElement(`p`, ...args);
 export const span = (...args) => makeElement(`span`, ...args);
 export const ul = (...args) => makeElement(`ul`, ...args);
 export const li = (...args) => makeElement(`li`, ...args);
-export const svg = (...args) => makeElement(`svg`, ...args);
-export const path = (...args) => makeElement(`path`, ...args);
-export const circle = (...args) => makeElement(`circle`, ...args);
+export const img = (...args) => makeElement(`img`, ...args);
+export const form = (...args) => makeElement(`form`, ...args);

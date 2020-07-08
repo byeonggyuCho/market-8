@@ -10,7 +10,7 @@ const usersRouter = require('./routes/users');
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, '../client/src/pages'));
+app.set('views', path.join(__dirname, '../client/src/views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
