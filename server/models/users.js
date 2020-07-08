@@ -4,19 +4,13 @@ const path = require('path');
 class Users { 
     static users = [];
 
-    static init = function() {
+    static init = function () {
         this.#readUsers();
     }
 
     static #readUsers = function () {
-        fs.readFile(path.join(__dirname, '../myDB.json'), 'utf8', (err, data) => {
-            if (err){
-                console.log(err);
-            } else {
-                this.users = JSON.parse(data); //now it an object
-                console.log(this.users);
-            }
-        });
+        const usersData = fs.readFileSync(path.join(__dirname, '../myDB.json'), 'utf8');
+        this.users = JSON.parse(usersData);
     }
 
     static write = function () {
@@ -24,6 +18,11 @@ class Users {
         fs.writeFile('myDB.json', userData, 'utf8', ()=>console.log('Success!'));
     }
 
+    /** @description finnd user using id & pw
+     * @param {string} id
+     * @param {string} pw
+     * @return {user}
+     */
     static getByIdPw = function ({id, pw}) {
         return this.users.find(user => user.id === id && user.pw === pw);   
     }
