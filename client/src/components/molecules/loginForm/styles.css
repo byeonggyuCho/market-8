@@ -2,9 +2,15 @@
 @import "../../atoms/img/styles.css";
 @import "../../atoms/input/styles.css";
 
-.loginForm {
+.molecules__loginForm {
     align-content: center;
     width: 330px;
     vertical-align: middle;
     display: grid;
 }
+.molecules__loginForm img{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+} 

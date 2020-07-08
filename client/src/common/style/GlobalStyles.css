@@ -29,13 +29,6 @@ input::placeholder {
     color: rgb(215, 219, 230);
 }
 
-img {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
 button {
     display: block;
     text-align: center;
