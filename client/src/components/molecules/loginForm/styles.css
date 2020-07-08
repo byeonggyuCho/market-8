@@ -1,0 +1,10 @@
+@import "../../atoms/button/styles.css";
+@import "../../atoms/img/styles.css";
+@import "../../atoms/input/styles.css";
+
+.loginForm {
+    align-content: center;
+    width: 330px;
+    vertical-align: middle;
+    display: grid;
+}
