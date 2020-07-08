@@ -13,7 +13,7 @@ exports.getUserByIdPw = (req, res) => {
 
 exports.checkId = (req, res) => {
     const {id} = req.params;
-    if(id === undefined || Users.userInDB(id)) {
+    if(id === undefined || Users.isIdInDB(id)) {
         res.status(404).send('user is already exist')
     }else {
         res.status(200).send('can add!')

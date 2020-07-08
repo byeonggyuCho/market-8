@@ -32,7 +32,7 @@ class Users {
      * @param {string} id
      * @return {boolean}
      */
-    static userInDB = function (id) {
+    static isIdInDB = function (id) {
         const user = this.users.find(user => user?.id === id);
         return user !== undefined;
     }
