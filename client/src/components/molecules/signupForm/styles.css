@@ -1,0 +1,29 @@
+@import "../../atoms/button/styles.css";
+@import "../../atoms/img/styles.css";
+@import "../../atoms/input/styles.css";
+
+.signupForm {
+    align-content: center;
+    width: 330px;
+    vertical-align: middle;
+    display: grid;
+}
+
+.emailDiv{
+    display: inline-block;
+    position: relative;
+}
+
+.emailDiv > input {
+    width: 120px;
+    float: left;
+    padding-right: 14px;
+    padding-left: 14px;
+}
+
+.emailDiv > span {
+    float: left;
+    padding-top: 15px;
+    width: 30px;
+    text-align: center;
+}
