@@ -6,7 +6,9 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const initDB = require('./models');
 
+initDB();
 const app = express();
 
 // view engine setup

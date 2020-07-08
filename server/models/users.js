@@ -24,7 +24,7 @@ class Users {
     }
 
     static getByIdPw = function ({id, pw}) {
-        return this.users.find(user => user.id === id && user.pw === pw);
+        return this.users.find(user => user.id === id && user.pw === pw);   
     }
 
     static create = function (user) {
