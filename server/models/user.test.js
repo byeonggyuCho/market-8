@@ -33,24 +33,24 @@ describe('idIdInDB Test', () => {
   });
 });
 
-describe('get getByIdPw', function () {
+describe('get findByIdPw', function () {
   it('find existed user', function () {
     const user = {
       id: 'auddn6676',
       pw: '12345'
     }
-    expect(Users.getByIdPw(user)).toMatchObject(user);
+    expect(Users.findByIdPw(user)).toMatchObject(user);
   })
   it('find not existed user', function () {
     const user = {
       id: 'auddn667',
       pw: '12345'
     }
-    expect(Users.getByIdPw(user)).toBeUndefined();
+    expect(Users.findByIdPw(user)).toBeUndefined();
   })
   it('user is empty object', function () {
     const user = {};
-    expect(Users.getByIdPw(user)).toBeUndefined();
+    expect(Users.findByIdPw(user)).toBeUndefined();
   })
 })
 
