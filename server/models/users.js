@@ -9,8 +9,12 @@ class Users {
     }
 
     static #readUsers = function () {
-        const usersData = fs.readFileSync(path.join(__dirname, '../myDB.json'), 'utf8');
-        this.users = JSON.parse(usersData);
+        const fileName = path.join(__dirname, '../myDB.json');
+        if(fs.existsSync(fileName)){
+            const usersData = fs.readFileSync(fileName, 'utf8');
+            this.users = JSON.parse(usersData);
+        }
+        
     }
 
     static write = function () {
