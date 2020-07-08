@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 class Users { 
     static users = [];
@@ -8,7 +9,7 @@ class Users {
     }
 
     static #readUsers = function () {
-        fs.readFile('myDB.json', 'utf8', (err, data) => {
+        fs.readFile(path.join(__dirname, '../myDB.json'), 'utf8', (err, data) => {
             if (err){
                 console.log(err);
             } else {
@@ -25,6 +26,15 @@ class Users {
 
     static getByIdPw = function ({id, pw}) {
         return this.users.find(user => user.id === id && user.pw === pw);   
+    }
+
+    /** @description find id in db
+     * @param {string} id
+     * @return {boolean}
+     */
+    static isIdInDB = function (id) {
+        const user = this.users.find(user => user?.id === id);
+        return user !== undefined;
     }
 
     static create = function (user) {
