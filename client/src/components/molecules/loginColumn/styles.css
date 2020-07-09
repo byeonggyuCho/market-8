@@ -1,8 +1,6 @@
 @import "../../atoms/button/styles.css";
-@import "../../atoms/img/styles.css";
-@import "../../atoms/input/styles.css";
 
-.molecule-loginForm {
+.molecule-loginColumn {
     align-content: center;
     width: 100%;
     vertical-align: middle;

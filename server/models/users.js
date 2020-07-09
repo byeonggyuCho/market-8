@@ -3,15 +3,15 @@ const path = require('path');
 
 class Users { 
     static users = [];
+    static fileName = path.join(__dirname, '../myDB.json');
 
     static init = function () {
         this.#readUsers();
     }
 
     static #readUsers = function () {
-        const fileName = path.join(__dirname, '../myDB.json');
-        if(fs.existsSync(fileName)){
-            const usersData = fs.readFileSync(fileName, 'utf8');
+        if(fs.existsSync(this.fileName)){
+            const usersData = fs.readFileSync(this.fileName, 'utf8');
             this.users = JSON.parse(usersData);
         }
         
@@ -19,7 +19,7 @@ class Users {
 
     static write = function () {
         const userData = JSON.stringify(this.users);
-        fs.writeFile('myDB.json', userData, 'utf8', ()=>console.log('Success!'));
+        fs.writeFileSync(this.fileName, userData, 'utf8');
     }
 
     /** @description find user using id & pw
@@ -36,7 +36,7 @@ class Users {
      * @return {boolean}
      */
     static isIdInDB = function (id) {
-        const user = this.users.find(user => user?.id === id);
+        const user = this.users.find(user => user.id === id);
         return user !== undefined;
     }
 

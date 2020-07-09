@@ -1,0 +1,22 @@
+@import "../../atoms/button/styles.css";
+
+.molecule-confirmColumn {
+    padding: 15px;
+    border: 1px solid rgb(215, 219, 230);
+    margin-bottom: 8px;
+    font-size: 12px;
+    width: 100%;
+}
+
+.molecule-confirmColumn .key {
+    display: inline-block;
+    width: 60px;
+    /* background-color: blueviolet; */
+    color: darkgrey;
+
+}
+
+.molecule-confirmColumn .value {
+    /* background-color: rgb(64, 226, 43); */
+    display: inline;
+}
