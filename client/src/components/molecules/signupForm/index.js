@@ -4,69 +4,28 @@ import Input from '/components/atoms/input/index.js';
 import Img from '/components/atoms/img/index.js';
 import Text from '/components/atoms/text/index.js';
 import Select from '/components/atoms/select/index.js';
+import { 
+    emailSelecthandler,
+    validateId,
+    validatePw,
+    validateConfirmPw,
+    validateEmail
+} from '/components/molecules/signupForm/validator.js'
 
 const emptyClass = '';
 const emptyProperty = {};
-
-const inputDisabledClass = 'atom-input-disabled';
-let emailClass = inputDisabledClass;
-
-
-/** @description select handler
-     * @param {event} event
-     */
-const emailSelecthandler = (event) => {
-    const selectValue = event?.target?.value;
-    const emailInput = document.getElementsByName("emailRear")?.[0];
-
-    const naverEmail = 'naver.com';
-    const googleEmail = 'gmail.com';
-    const nateEmail = 'nate.com';
-    const hotEmail = 'hotmail.com';
-    const hanEmail = 'hanmail.net';
-
-
-    if(!selectValue || !emailInput) return;
-
-    console.log(emailInput);
-    switch(selectValue){
-        case naverEmail:
-            emailInput.value = naverEmail;
-            break;
-        case hanEmail:
-            emailInput.value = hanEmail;
-            break;
-        case nateEmail:
-            emailInput.value = nateEmail;
-            break;
-        case hotEmail:
-            emailInput.value = hotEmail;
-            break;
-        case googleEmail:
-            emailInput.value = googleEmail;
-            break;
-        case '직접입력':
-            emailInput.value = '';
-            emailInput.className = emptyClass;
-            break;
-        default:
-            emailInput.className = inputDisabledClass;
-    }
-}
-
-
 
 const SignupForm = () => form(
     { className : 'molecule-signupForm', action: 'users/login', method: 'post' },
     Img('https://ceo.baemin.com/lockpath/images/logo-ceo.png', '배민사장님광장', 274, 40),
     Text(emptyClass, '필수 정보를 입력해주세요'),
-    Input(emptyClass, 'id', '아이디* (4~20자)', 'text'),
-    Input(emptyClass, 'pw', '비밀번호* (영문+숫자, 8~20자)', 'password'),
-    Input(emptyClass, 'pwConfirm', '비밀번호 재확인*', 'password'),
+    Input(emptyClass, 'id', '아이디* (4~20자)', 'text', validateId),
+    Input(emptyClass, 'pw', '비밀번호* (영문+숫자, 8~20자)', 'password', validatePw),
+    Input(emptyClass, 'pwConfirm', '비밀번호 재확인*', 'password', validateConfirmPw),
     div({ className : 'emailDiv'},
-        Input(emptyClass, 'emailFront', '이메일 앞자리*', 'text'),
+        Input(emptyClass, 'emailFront', '이메일 앞자리*', 'text', validateEmail),
         span(emptyProperty, '@'),
-        Input(emailClass, 'emailRear', '이메일 뒷자리*', 'text'), 
+        Input('atom-input-disabled', 'emailRear', '이메일 뒷자리*', 'text'), 
     ),
     Select({className: emptyClass, name: 'emailSelect', onchange: emailSelecthandler},
         option(
@@ -101,7 +60,7 @@ const SignupForm = () => form(
     Input(emptyClass, 'name', '이름*', 'text'),
     div({ className : 'button-input'},
         Input('atom-input-with-buton', 'phoneNo', '휴대폰*', 'tel'),
-        Button('atom-button-with-input', '가입완료'),
+        Button('atom-button-with-input', '인증받기'),
     ),
     div ({},
         ul({className: 'remove-indent'},

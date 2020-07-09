@@ -1,6 +1,7 @@
 @import "../../atoms/button/styles.css";
 @import "../../atoms/img/styles.css";
 @import "../../atoms/input/styles.css";
+@import "../../atoms/text/styles.css";
 
 .molecule-signupForm {
     align-content: center;
