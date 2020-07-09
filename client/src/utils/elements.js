@@ -105,5 +105,6 @@ export const img = (...args) => makeElement(`img`, ...args);
 export const form = (...args) => makeElement(`form`, ...args);
 export const select = (...args) => makeElement(`select`, ...args);
 export const option = (...args) => makeElement(`option`, ...args);
+export const label = (...args) => makeElement(`label`, ...args);
 
 

@@ -2,11 +2,33 @@
 @import "../../atoms/img/styles.css";
 @import "../../atoms/input/styles.css";
 
+.signup-form-container{
+    width: 330px;
+    margin: 1.5em auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    line-height:normal;
+}
+
 .molecule-signupForm {
     align-content: center;
     width: 330px;
     vertical-align: middle;
     display: grid;
+}
+
+.button-input{
+    display: inline-block;
+    position: relative;
+}
+
+.button-input > input {
+    float: left;
+    padding-right: 14px;
+    padding-left: 14px;
 }
 
 .emailDiv{
@@ -26,6 +48,92 @@
     padding-top: 15px;
     width: 30px;
     text-align: center;
+}
+
+.remove-indent {
+    padding: 0;
+    list-style-type: none;
+}
+
+.remove-indent > li::before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 8px;
+    left: 0;
+    width: 3px;
+    height: 3px;
+    background: #bbc0cd;
+    border-radius: 50%;
+}
+
+.remove-indent > li {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.1px;
+    color: #898989;
+    font-weight: normal;
+    position: relative;
+    padding-left: 9px;
+}
+
+.input-checkbox > label {
+    position: relative;
+    display: inline-block;
+    padding-left: 10px;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.4px;
+    font-weight: normal;
+}
+
+.input-checkbox > input {
+    max-height: 25px;
+    min-width: 25px;
+}
+
+.input-checkbox > a {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.1px;
+    color: #898989;
+    font-weight: normal;
+    position: relative;
+    padding-left: 9px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.input-checkbox > p{
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.1px;
+    color: #898989;
+    font-weight: normal;
+    position: relative;
+    padding-left: 9px;
+    cursor: pointer;
+}
+
+.check-input-label{
+    margin: 50px 0 20px;
+}
+
+.total-input-checkbox > input {
+    max-height: 25px;
+    min-width: 25px;
+}
+
+.total-input-checkbox  > label {
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 25px;
+    letter-spacing: -0.4px;
+    color: #212329;
+    font-weight: bold;
+    padding-left: 10px;
+    letter-spacing: -0.4px;
 }
 
 

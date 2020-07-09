@@ -1,4 +1,4 @@
-import { form } from '/utils/elements.js';
+import { form, div } from '/utils/elements.js';
 import Button from '/components/atoms/button/index.js';
 import Input from '/components/atoms/input/index.js';
 import Img from '/components/atoms/img/index.js';
