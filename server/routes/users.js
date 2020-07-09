@@ -6,7 +6,8 @@ const { passport } = require('../utils/passport');
 
 router.post('/login', passport.authenticate('local', { 
     successRedirect: '/mypage',
-    failureRedirect: '/login' 
+    failureRedirect: '/login',
+    failureFlash: true,
 }));
 
 router.post('/', userController.createUser);
