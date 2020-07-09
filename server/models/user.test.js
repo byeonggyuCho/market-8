@@ -57,8 +57,8 @@ describe('get findByIdPw', function () {
 describe('test login request', () => {
   it('should success login', async () => {
     const user = {
-      id: 'auddn6676',
-      pw: '12345'
+      username: 'auddn6676',
+      password: '12345'
     }
     const res = await request(app)
       .post('/users/login')
@@ -67,8 +67,8 @@ describe('test login request', () => {
   });
   it('should not success login', async () => {
     const user = {
-      id: 'auddn667',
-      pw: '12345'
+      username: 'auddn667',
+      password: '12345'
     }
     const res = await request(app)
       .post('/users/login')

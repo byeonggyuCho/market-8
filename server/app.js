@@ -1,10 +1,11 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
+const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
-const logger = require('morgan');
 const passport = require('passport');
+const flash = require('connect-flash');
 
 require('./models')();
 
@@ -21,7 +22,8 @@ app.set('view engine', 'pug');
 app.use(cookieSession({
   keys: ['배민상회'],
   cookie: {
-    maxAge: 1000 * 60 * 60 // 유효기간 1시간
+    maxAge: 1000 * 60 * 60, // 유효기간 1시간
+    secure: true,
   }
 }));
 app.use(logger('dev'));
@@ -29,6 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/src')));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
