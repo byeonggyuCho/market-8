@@ -1,3 +1,8 @@
 .atom-input-disabled{
     pointer-events: none;
 }
+
+.atom-input-with-buton{
+    width: 190px;
+    margin-right: 20px;
+}
