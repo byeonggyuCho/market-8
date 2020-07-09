@@ -1,0 +1,11 @@
+@import "../../atoms/img/styles.css";
+
+.molecules__confirmHeader {
+    align-content: center;
+    max-width: 100%;
+    vertical-align: left;
+    display: grid;
+    font-size: 34px;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
