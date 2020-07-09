@@ -5,12 +5,17 @@ import Img from '/components/atoms/img/index.js';
 import Text from '/components/atoms/text/index.js';
 import Select from '/components/atoms/select/index.js';
 import { 
-    emailSelecthandler,
     validateId,
     validatePw,
     validateConfirmPw,
-    validateEmail
+    validateEmail,
+    validatePhone
 } from '/components/molecules/signupForm/validator.js'
+
+import { 
+    emailSelecthandler,
+    phoneButtonHandler
+} from '/components/molecules/signupForm/handlers.js'
 
 const emptyClass = '';
 const emptyProperty = {};
@@ -58,9 +63,9 @@ const SignupForm = () => form(
         ),
     ),
     Input(emptyClass, 'name', '이름*', 'text'),
-    div({ className : 'button-input'},
-        Input('atom-input-with-buton', 'phoneNo', '휴대폰*', 'tel'),
-        Button('atom-button-with-input', '인증받기'),
+    div({ className : 'button-input phone-container'},
+        Input('atom-input-with-buton', 'phoneNo', '휴대폰*', 'tel', validatePhone),
+        Button('atom-button-with-input phone-button atom-button-failed', '인증받기', phoneButtonHandler),
     ),
     div ({},
         ul({className: 'remove-indent'},
@@ -78,7 +83,7 @@ const SignupForm = () => form(
             }, '내용보기')
         )
     ),
-    div({ className : 'button-input'},
+    div({ className : 'button-input address-container'},
         Input('atom-input-with-buton', 'zipCode', '우편번호', 'tel'),
         Button('atom-button-with-input', '주소찾기'),
     ),
