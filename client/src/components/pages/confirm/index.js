@@ -1,5 +1,5 @@
 import ConfirmHeader from '/components/molecules/confirmHeader/index.js';
-import ConfirmColumn from '/components/molecules/confirmColumn/index.js';
+import UserInfoBody from '/components/molecules/userInfoBody/index.js';
 
 document.body.appendChild(ConfirmHeader());
-document.body.appendChild(ConfirmColumn(JSON.parse(document.cookie)));
+document.body.appendChild(UserInfoBody(JSON.parse(document.cookie)));

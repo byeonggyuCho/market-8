@@ -7,10 +7,10 @@ exports.createUser = async (req, res) => {
 }
 
 exports.checkId = (req, res) => {
-    const {id} = req.params;
-    if(id === undefined || Users.isIdInDB(id)) {
+    const { id } = req.params;
+    if (id === undefined || Users.getById(id)) {
         res.status(404).send('user is already exist')
-    }else {
+    } else {
         res.status(200).send('can add!')
     }
 }
