@@ -122,7 +122,7 @@ const SignupForm = () => form(
             li(emptyProperty, '14세 이상 회원만 가입 가능합니다.'),
         )
     ),
-    Button('atom-button-full', '가입완료'),
+    Button('atom-button-full signup-button', '가입완료'),
 );
 
 
