@@ -126,5 +126,19 @@
     letter-spacing: -0.4px;
 }
 
+.span-timer {
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 16px;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.4px;
+    color: #f52926;
+    font-weight: normal;
+    margin-right: 110px;
+}
+
 
 

@@ -13,3 +13,19 @@
     border-color: #ccc;
     color: #bbc0cd;
 }
+
+.atom-button-success {
+    border-color: #1a7cff;
+    color: #1a7cff;
+}
+
+.atom-button-failed {
+    pointer-events: none;
+}
+
+.atom-button-finished {
+    pointer-events: none;
+    background: #f8f9fa;
+    border-color: #f8f9fa;
+    color: #bbc0cd;
+}

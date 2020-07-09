@@ -1,5 +1,8 @@
-import { div, p } from '/utils/elements.js';
+import { div, span } from '/utils/elements.js';
 import Text from '/components/atoms/text/index.js';
+import Input from '/components/atoms/input/index.js';
+import Button from '/components/atoms/button/index.js';
+
 
 /** @description insert newNde after refenceNode
      * @param {Node} newNode
@@ -10,46 +13,18 @@ function insertAfter(newNode, referenceNode) {
 }
 
 
-/** @description select handler
-     * @param {event} event
+/** @description delete sibling node
+     * @param {Node} referenceNode
      */
-export const emailSelecthandler = (event) => {
-    const inputDisabledClass = 'atom-input-disabled';
-    const selectValue = event?.target?.value;
-    const emailInput = document.getElementsByName("emailRear")?.[0];
-
-    const naverEmail = 'naver.com';
-    const googleEmail = 'gmail.com';
-    const nateEmail = 'nate.com';
-    const hotEmail = 'hotmail.com';
-    const hanEmail = 'hanmail.net';
-
-
-    if(!selectValue || !emailInput) return;
-
-    switch(selectValue){
-        case naverEmail:
-            emailInput.value = naverEmail;
-            break;
-        case hanEmail:
-            emailInput.value = hanEmail;
-            break;
-        case nateEmail:
-            emailInput.value = nateEmail;
-            break;
-        case hotEmail:
-            emailInput.value = hotEmail;
-            break;
-        case googleEmail:
-            emailInput.value = googleEmail;
-            break;
-        case '직접입력':
-            emailInput.value = '';
-            emailInput.className = '';
-            break;
-        default:
-            emailInput.className = inputDisabledClass;
+const deleteSibling = (node) => {
+    if(node && node.nextSibling) {
+        node.parentNode.removeChild(node.nextSibling)
     }
+};
+
+export const validateStates = {
+    phoneNo: false,
+    phoneConfirm: false,
 }
 
 export const validateId = (function() {
@@ -223,6 +198,76 @@ export const validateName = (function() {
             } else {
                 message.textContent = '한글과 영어만 포함하여 2 ~ 20 글자로 입력해주세요';
             }
+        }
+    }
+})();
+
+
+export const validatePhone = (function() {
+    let isAddNode = false;
+    let textNode = null;
+    let phoneContainer = null;
+    let phone = null;
+    let phoneInput = null;
+    let phoneButton = null;
+    const defaultButtonClassName = 'atom-button-with-input phone-button';
+
+    const addErrorMessage = () => {
+        if(validateStates.phoneNo) {
+            deleteSibling(phoneContainer);
+        }
+        if(!isAddNode){
+            isAddNode = true;
+            textNode = Text('atom-text-error');
+            const messageNode = div({className: 'msg'}, 
+                    textNode
+                );
+            insertAfter(messageNode, phoneContainer);
+        }
+        if(!phone) {
+            textNode.textContent = '휴대폰 번호를 입력해 주세요';
+        }else {
+            textNode.textContent = '휴대폰 번호를 확인해 주세요';
+        }
+    };
+
+    setTimeout(() => {
+        phoneButton = document.querySelector('input[name=phoneNo]+button');
+        phoneContainer = document.querySelector('.phone-container');
+        phoneInput = document.querySelector('input[name=phoneNo]');
+        phoneInput.addEventListener('blur', (event) => {
+            phone = phoneInput.value;
+            if(!phone){
+                addErrorMessage();
+            }
+        });
+        phoneInput.addEventListener('keyup', (event) => {
+            const regex = /[0-9]/; // 폰 번호가 적합한지 validate
+            const isValitaed = regex.test(event.target.value);
+            if(isValitaed){
+                validatePhone(event);
+            }else {
+                event.target.value = '';
+            }
+        })
+    });
+
+    return (event) => {
+        phone = phoneInput.value;
+        const regex = /^[0-9]{3}[0-9]{4}[0-9]{4}$/; // 폰 번호가 적합한지 validate
+        const isValitaed = regex.test(phone);
+        if(isValitaed) {
+            if(phoneContainer && phoneContainer.nextSibling && isAddNode) {
+                phoneContainer.parentNode.removeChild(phoneContainer.nextSibling)
+                isAddNode = false;
+            }
+            phoneButton.className = defaultButtonClassName + ' atom-button-success';
+            validateStates.phoneNo = true;
+        } else {
+            phoneButton.className = defaultButtonClassName + ' atom-button-failed';
+            phoneButton.innerText = '인증받기';
+            addErrorMessage()
+            validateStates.phoneNo = false;
         }
     }
 })();
