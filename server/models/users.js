@@ -23,20 +23,11 @@ class Users {
         fs.writeFileSync(this.fileName, userData, 'utf8');
     }
 
-    /** @description find user using id & pw
+    /** @description find user using id
      * @param {string} id
      * @return {user}
      */
     static getById = (id) => this.users.find(user => user.id === id);   
-
-    /** @description find id in db
-     * @param {string} id
-     * @return {boolean}
-     */
-    static isIdInDB = function (id) {
-        const user = this.users.find(user => user.id === id);
-        return user !== undefined;
-    }
 
     static create = async function (user) {
         user.email = user.emailFront + '@' + user.emailRear;
