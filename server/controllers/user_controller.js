@@ -1,7 +1,10 @@
+const bcrypt = require('bcrypt');
 const Users = require('../models/users');
 
 exports.createUser = async (req, res) => {
-    const user = await Users.create(req.body);
+    const input = req.body;
+    input.pw = await bcrypt.hash(input.pw, 10);
+    const user = Users.create(input);
     const { id, name, email, phoneNo } = user;
     res.render('confirm', { user : { id, name, email, phoneNo } });
 }

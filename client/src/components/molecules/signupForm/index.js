@@ -82,8 +82,8 @@ const SignupForm = () => form(
         Input('atom-input-with-buton', 'zipCode', '우편번호', 'tel'),
         Button('atom-button-with-input', '주소찾기'),
     ),
-    Input(emptyClass, 'address', '주소', 'text'),
-    Input(emptyClass, 'detailAdress', '상세 주소', 'text'),
+    Input(emptyClass, 'address1', '주소', 'text'),
+    Input(emptyClass, 'address2', '상세 주소', 'text'),
     div ({className: 'check-input-label'},
         div(
             {className: 'total-input-checkbox'},
@@ -107,7 +107,7 @@ const SignupForm = () => form(
     div ({className: ''},
         div(
             {className: 'input-checkbox'},
-            Input(emptyClass, 'checkAddress', '', 'checkbox'),
+            Input(emptyClass, 'isAdAgreed', '', 'checkbox'),
             label(emptyProperty, '광고성 정보 수신 동의 (선택)'),
             p(emptyProperty, '배민사장광장 회원에게 제공하는 서비스의 광고성 정보를 수신합니다.'),
         )
