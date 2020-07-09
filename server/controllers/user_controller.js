@@ -5,12 +5,6 @@ exports.createUser = (req, res) => {
     res.send(user);
 }
 
-exports.getUserByIdPw = (req, res) => {
-    const user = Users.getByIdPw(req.body);
-    if(user) res.send(user);
-    else res.status(404).send('user not found');
-}
-
 exports.checkId = (req, res) => {
     const {id} = req.params;
     if(id === undefined || Users.isIdInDB(id)) {
