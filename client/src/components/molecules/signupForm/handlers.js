@@ -163,3 +163,112 @@ export const phoneButtonHandler = (() => {
         }
     }
 })();
+
+export const handleCheckTotal = (() => {
+    let essentialCheck = null;
+    let adCheck = null;
+
+    setTimeout(() => {
+        essentialCheck = document.querySelector('input[name=checkEssential]');
+        adCheck = document.querySelector('input[name=checkAd]');    
+    });
+
+    return (event) => {
+        const inputButton = event.target;
+        if(inputButton.checked) {
+            essentialCheck.checked = true;
+            adCheck.checked = true;
+        }else {
+            essentialCheck.checked = false;
+            adCheck.checked = false;
+        }
+    }
+
+})();
+
+
+export const handleCheckEssential = (() => {
+    let essentialCheck = null;
+    let totalCheck = null;
+
+    setTimeout(() => {
+        essentialCheck = document.querySelector('input[name=checkEssential]');
+        totalCheck = document.querySelector('input[name=checkTotal]');    
+    });
+
+    return (event) => {
+        if(!essentialCheck.checked) {
+            totalCheck.checked = false;
+        }
+    }
+})();
+
+export const handleFindAddress = (() => {
+    let zipInput = null;
+    let addressInput = null;
+
+    setTimeout(() => {
+        zipInput = document.querySelector('input[name=zipCode]');
+        addressInput = document.querySelector('input[name=address1]');    
+    });
+
+    return (event) => {
+        event?.preventDefault();
+        new daum.Postcode({
+            oncomplete: function(data) {
+                zipInput.value = data.zonecode;
+                addressInput.value = data.address;
+            }
+        }).open();
+    }
+})();
+
+export const handleForm = (() => {
+    const checkAddressClick = (name) => {
+        if(name === 'zipCode' || name === 'address1'){
+            const addressCheckInput = document.querySelector('input[name=checkAddress]');
+            if(addressCheckInput.checked) {
+                handleFindAddress();
+            }
+        }
+    }
+
+    return (event) => {
+        const name = event.target.name;
+        checkAddressClick(name);
+    }
+})();
+
+export const handleCheckAddress = (() => {
+    let zipInput = null;
+    let addressInput = null;
+    let detailAddressInput = null;
+    let addressButton = null;
+    let defaultBtnClassName = '';
+
+    setTimeout(() => {
+        zipInput = document.querySelector('input[name=zipCode]');
+        addressInput = document.querySelector('input[name=address1]');  
+        detailAddressInput = document.querySelector('input[name=address2]');    
+        addressButton = document.querySelector('.find-address');   
+        defaultBtnClassName = addressButton.className; 
+
+        zipInput.disabled = true;
+        addressInput.disabled = true;
+        detailAddressInput.disabled = true;
+        addressButton.disabled = true;
+    });
+
+    return (event) => {
+        if(event.target.checked) {
+            addressButton.className = defaultBtnClassName + ' atom-button-success';
+            addressButton.disabled = false;
+            detailAddressInput.disabled = false;
+        }else {
+            addressButton.className = defaultBtnClassName;
+            addressButton.disabled = true;
+
+            detailAddressInput.disabled = true;
+        }
+    }
+})();

@@ -5,7 +5,7 @@ const Input = (
     name, 
     placeholder,
     type,
-    onchange, 
+    onchange,
 ) => input({ className, name, placeholder, type, onchange });
 
 export default Input;

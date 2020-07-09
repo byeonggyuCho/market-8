@@ -23,8 +23,14 @@ const deleteSibling = (node) => {
 };
 
 export const validateStates = {
+    id: false,
+    pw: false,
+    confirmPw: false,
+    email: false,
+    name: false,
     phoneNo: false,
     phoneConfirm: false,
+    essential: false
 }
 
 export const validateId = (function() {
@@ -53,9 +59,11 @@ export const validateId = (function() {
         if(isValitaed) {
             message.className = 'atom-text-success'
             message.textContent = '입력하신 아이디로 사용이 가능합니다.';
+            validateStates.id = true;
         } else {
             message.className = 'atom-text-error';
             message.textContent = '아이디는 영문과 숫자로 4자~20자 사이로 입력해 주세요';
+            validateStates.id = false;
         }        
     }
 })();
@@ -74,6 +82,7 @@ export const validatePw = (function() {
         const regex = /^[a-zA-Z0-9]{8,20}$/ // 아이디가 적합한지 정규식
         const isValitaed = regex.test(pw);
         if(!isValitaed) {
+            validateStates.pw = false;
             if(!isAddNode){
                 isAddNode = true;
                 const messageNode = div({className: 'msg'}, 
@@ -82,6 +91,7 @@ export const validatePw = (function() {
                 insertAfter(messageNode, event.target);
             }
         }else {
+            validateStates.pw = true;
             if(pwInput && pwInput.nextSibling && isAddNode) {
                 pwInput.parentNode.removeChild(pwInput.nextSibling)
                 isAddNode = false;
@@ -112,6 +122,7 @@ export const validateConfirmPw = (function() {
         const confirmPw = confirmPwInput.value;
 
         if(pw === confirmPw && confirmPw !== '') {
+            validateStates.confirmPw = true;
             if(confirmPwInput && confirmPwInput.nextSibling && isAddNode) {
                 confirmPwInput.parentNode.removeChild(confirmPwInput.nextSibling)
                 isAddNode = false;
@@ -164,7 +175,6 @@ export const validateEmail = (function() {
         }
     }
 })();
-
 
 export const validateName = (function() {
     let isAddNode = false;
