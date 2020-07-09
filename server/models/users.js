@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const bcrypt = require('bcrypt');
 
 class Users { 
     static users = [];
@@ -24,12 +25,9 @@ class Users {
 
     /** @description find user using id & pw
      * @param {string} id
-     * @param {string} pw
      * @return {user}
      */
-    static getByIdPw = ({id, pw}) => this.users.find(user => user.id === id && user.pw === pw);   
-
-
+    static getById = (id) => this.users.find(user => user.id === id);   
 
     /** @description find id in db
      * @param {string} id
@@ -40,7 +38,9 @@ class Users {
         return user !== undefined;
     }
 
-    static create = function (user) {
+    static create = async function (user) {
+        user.email = user.emailFront + '@' + user.emailRear;
+        user.pw = await bcrypt.hash(user.pw, 10);
         this.users.push(user);
         this.write();
         return user;
