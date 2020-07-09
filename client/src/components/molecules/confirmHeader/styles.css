@@ -2,7 +2,7 @@
 
 .molecule-confirmHeader {
     align-content: center;
-    max-width: 100%;
+    width: 100%;
     vertical-align: left;
     display: grid;
     font-size: 34px;

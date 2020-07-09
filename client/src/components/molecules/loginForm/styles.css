@@ -2,23 +2,9 @@
 @import "../../atoms/img/styles.css";
 @import "../../atoms/input/styles.css";
 
-.login-form-container{
-    width: 330px;
-    margin: 1.5em auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 100%;
-    line-height:normal;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .molecule-loginForm {
     align-content: center;
-    width: 330px;
+    width: 100%;
     vertical-align: middle;
     display: grid;
 }
