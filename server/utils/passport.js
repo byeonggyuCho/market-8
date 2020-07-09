@@ -1,4 +1,5 @@
 const passport = require('passport');
+const bcrypt = require('bcrypt');
 const LocalStrategy = require('passport-local').Strategy;
 const Users = require('../models/users');
 
@@ -8,11 +9,15 @@ passport.deserializeUser((user, done) => done(null, user));
 passport.use(new LocalStrategy( {
     usernameField: 'username',
     passwordField: 'password',
-    passReqToCallback: true
-},(req, id, pw, done) => {
-    const user = Users.getByIdPw({ id, pw });
-    if(!user) return done(null, false, { message: 'user not found' });
-    return done(null, { userId : id });
+},(id, pw, done) => {
+    const user = Users.getById(id);
+    if(!user) return done(null, false, { message: '아이디가 틀렸습니다.' });
+    
+    const { name, email, phoneNo } = user;
+    return bcrypt.compare(pw, user.pw, (err, res) => {
+        if (res) return done(null, { id, name, email, phoneNo });
+        return done(null, false, { message: '비밀번호가 틀렸습니다.' });
+    });    
 }));
 
 function isAuthenticated(req, res, next){

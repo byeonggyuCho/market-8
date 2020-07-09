@@ -1,8 +1,9 @@
 const Users = require('../models/users');
 
-exports.createUser = (req, res) => {
-    const user = Users.create(req.body);
-    res.send(user);
+exports.createUser = async (req, res) => {
+    const user = await Users.create(req.body);
+    const { id, name, email, phoneNo } = user;
+    res.render('confirm', { user : { id, name, email, phoneNo } });
 }
 
 exports.checkId = (req, res) => {
