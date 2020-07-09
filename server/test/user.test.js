@@ -1,6 +1,6 @@
 const assert = require('assert'); 
 const request = require('supertest');
-const Users = require("./users");
+const Users = require("../models/users");
 const app = require('../app');
 
 Users.init();
@@ -13,7 +13,7 @@ describe('Sample Test', () => {
 
 describe('idIdInDB Test', () => {
   it('find exsited user', () => {
-    console.log(Users.users);
+    console.log(Users.items);
     expect(Users.isIdInDB('auddn6676')).toBe(true);
   });
   it('find not existed user', function () {
