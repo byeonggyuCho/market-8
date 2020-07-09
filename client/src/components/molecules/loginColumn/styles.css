@@ -1,6 +1,6 @@
 @import "../../atoms/button/styles.css";
 
-.molecules__loginColumn {
+.molecule-loginColumn {
     align-content: center;
     max-width: 100%;
     vertical-align: middle;

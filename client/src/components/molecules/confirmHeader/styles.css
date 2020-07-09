@@ -1,6 +1,6 @@
 @import "../../atoms/img/styles.css";
 
-.molecules__confirmHeader {
+.molecule-confirmHeader {
     align-content: center;
     max-width: 100%;
     vertical-align: left;

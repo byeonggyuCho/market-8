@@ -55,7 +55,7 @@ const emailSelecthandler = (event) => {
 }
 
 const SignupForm = () => form(
-    { className : 'signupForm', action: 'users/login', method: 'post' },
+    { className : 'molecule-signupForm', action: 'users/login', method: 'post' },
     Img('https://ceo.baemin.com/lockpath/images/logo-ceo.png', '배민사장님광장', 274, 40),
     Text(emptyClass, '필수 정보를 입력해주세요'),
     Input(emptyClass, 'id', '아이디* (4~20자)', 'text'),
@@ -97,7 +97,7 @@ const SignupForm = () => form(
         ),
     ),
 
-    Button('atom.button.full', '가입완료'),
+    Button('atom-button-full', '가입완료'),
 )
 
 export default SignupForm;

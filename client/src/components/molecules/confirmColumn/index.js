@@ -1,7 +1,7 @@
 import { div } from '/utils/elements.js';
 
 const ConfirmColumn = () => div(
-    { className : 'molecules__confirmColumn', },
+    { className : 'molecule-confirmColumn', },
     div(
         div({ className : 'key' }, '이름'), 
         div({ className : 'value' }, '윤지수')
