@@ -22,14 +22,14 @@ class Users {
         fs.writeFile('myDB.json', userData, 'utf8', ()=>console.log('Success!'));
     }
 
-    /** @description finnd user using id & pw
+    /** @description find user using id & pw
      * @param {string} id
      * @param {string} pw
      * @return {user}
      */
-    static getByIdPw = function ({id, pw}) {
-        return this.users.find(user => user.id === id && user.pw === pw);   
-    }
+    static getByIdPw = ({id, pw}) => this.users.find(user => user.id === id && user.pw === pw);   
+
+
 
     /** @description find id in db
      * @param {string} id
