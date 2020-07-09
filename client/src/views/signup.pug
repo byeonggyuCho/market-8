@@ -1,7 +1,9 @@
-extends templates/default/layout
+extends layout
 
 block scripts
-  script(src='components/index.js')
-
+  link(rel='stylesheet', href='components/molecules/signupForm/styles.css')
+  script(type='module' src='components/pages/signup.js')
+    
 block content
-  h1= '사장님, 로그인해주세요!'
+  
+
