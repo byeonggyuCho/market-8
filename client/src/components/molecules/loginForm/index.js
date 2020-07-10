@@ -5,7 +5,7 @@ import Img from '/components/atoms/img/index.js';
 import A from '/components/atoms/a/index.js';
 
 const LoginForm = (failureMsg = '') => form(
-    { className : 'molecule-loginForm', action: 'users/login', method: 'post' },
+    { className : 'molecule-loginForm', action: 'api/users/login', method: 'post' },
     Img('https://ceo.baemin.com/lockpath/images/logo-ceo.png', '배민사장님광장', 274, 40),
     div({ className : 'failureMsg'}, failureMsg === 'Missing credentials' ? '아이디와 비밀번호를 모두 입력해주세요.' : failureMsg),
     Input('atom.input.full', 'username', '아이디', 'text'),

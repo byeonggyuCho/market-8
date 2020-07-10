@@ -7,10 +7,10 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const flash = require('connect-flash');
 
+require('dotenv').config()
 require('./models');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 
 const app = express();
 
@@ -36,10 +36,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
 
 // error handler
 app.use((err, req, res, next) => {
@@ -52,6 +49,5 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
-
 
 module.exports = app;
