@@ -51,11 +51,18 @@ export const validateId = (function() {
         })
     });
 
-    return (event) => {
+    const checkDuplicateId = async (id) => {
+        const res = await fetch(`users/id/${id}`);
+        const body = await res.json();
+        return body.isDup;
+    }
+
+    return async (event) => {
         const id = event?.target?.value;
         const idInput = event.target;
         const regex = /^[a-z0-9\_\-]{4,20}$/ // 아이디가 적합한지 정규식
-        const isValitaed = regex.test(id);
+        const isDup = await checkDuplicateId(id);
+        const isValitaed = regex.test(id) && !isDup;
 
         if(!isAddNode){
             isAddNode = true;
@@ -72,8 +79,12 @@ export const validateId = (function() {
             validateStates.id = true;
             idInput.className = defaultClassName;
         } else {
+            if(isDup){
+                message.textContent = '아이디가 중복되었습니다';
+            }else{
+                message.textContent = '아이디는 영문과 숫자로 4자~20자 사이로 입력해 주세요';            
+            }
             message.className = 'atom-text-error';
-            message.textContent = '아이디는 영문과 숫자로 4자~20자 사이로 입력해 주세요';
             validateStates.id = false;
             idInput.className = defaultClassName + ' atom-input-false';
         }        
@@ -169,8 +180,11 @@ export const validateConfirmPw = (function() {
 export const validateEmail = (function() {
     let isAddNode = false;
     let defaultClassName = '';
+    let rearInput = null;
     setTimeout(() => {
         const emailInput = document.querySelector('input[name=emailFront]');
+        rearInput = document.querySelector('input[name=emailRear]');
+        rearInput.disabled = true;
         defaultClassName = emailInput.className;
         emailInput.addEventListener('blur', (event) => {
             validateEmail(event);

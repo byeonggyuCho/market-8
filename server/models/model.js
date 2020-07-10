@@ -29,7 +29,8 @@ class Model {
         const data = {};
         console.log(this.attributesTypes);
         for (const [key, value] of Object.entries(item)) {
-            console.log(`${key}: ${value}`);
+            console.log(key);
+            console.log(value);
             if(!this.attributesTypes[key] || !value) continue;
 
             switch(this.attributesTypes[key]){

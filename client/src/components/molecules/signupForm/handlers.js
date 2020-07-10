@@ -30,6 +30,7 @@ export const emailSelecthandler = (event) => {
     const inputDisabledClass = 'atom-input-disabled';
     const selectValue = event?.target?.value;
     const emailInput = document.getElementsByName("emailRear")?.[0];
+    const rearInput = document.querySelector('input[name=emailRear]');
 
     const naverEmail = 'naver.com';
     const googleEmail = 'gmail.com';
@@ -39,6 +40,7 @@ export const emailSelecthandler = (event) => {
 
 
     if(!selectValue || !emailInput) return;
+    rearInput.disabled = true;
 
     switch(selectValue){
         case naverEmail:
@@ -57,6 +59,7 @@ export const emailSelecthandler = (event) => {
             emailInput.value = googleEmail;
             break;
         case '직접입력':
+            rearInput.disabled = false;
             emailInput.value = '';
             emailInput.className = '';
             break;
@@ -170,7 +173,7 @@ export const handleCheckTotal = (() => {
 
     setTimeout(() => {
         essentialCheck = document.querySelector('input[name=checkEssential]');
-        adCheck = document.querySelector('input[name=checkAd]');    
+        adCheck = document.querySelector('input[name=isAdAgreed]');    
     });
 
     return (event) => {
@@ -284,7 +287,7 @@ export const handleSingupButton = (() => {
         event.preventDefault();
         const inputs = [...document.getElementsByTagName('input')];
         const essentialCheck = document.querySelector('input[name=checkEssential]');
-        const adCheck = document.querySelector('input[name=checkAd');
+        const adCheck = document.querySelector('input[name=isAdAgreed]');
 
         const essentialStatue = essentialCheck.checked;
         const adStatue = adCheck.checked;
@@ -306,6 +309,16 @@ export const handleSingupButton = (() => {
             essentialCheck.focus();
             essentialCheck.scrollIntoView();
         }else {
+            const rearInput = document.querySelector('input[name=emailRear]');
+            rearInput.disabled = false;
+            const phoneInput = document.querySelector('input[name=phoneNo]');
+            phoneInput.disabled = false;
+            const addressInput = document.querySelector('input[name=address1]');
+            addressInput.disabled = false;
+            const addressDetailInput = document.querySelector('input[name=address2]');
+            addressDetailInput.disabled = false;
+            const zipCodeInput = document.querySelector('input[name=zipCode]');
+            zipCodeInput.disabled = false;
             const signupForm = document.querySelector('.molecule-signupForm');
             signupForm.submit();
 
