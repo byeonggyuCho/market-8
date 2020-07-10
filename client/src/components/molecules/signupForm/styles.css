@@ -82,7 +82,7 @@
     min-width: 25px;
 }
 
-.input-checkbox > a {
+.info {
     font-size: 12px;
     line-height: 18px;
     letter-spacing: -0.1px;
@@ -140,5 +140,20 @@
     margin-right: 110px;
 }
 
+.signup-button {
+    margin-bottom: 70px;
+}
 
+.confirm-ad-info {
+    margin-left: 30px;
+}
+
+.accept-info {
+    margin-left: 30px;
+}
+
+.info-container {
+    height: 60px;
+    margin-bottom: 10px;
+}
 
