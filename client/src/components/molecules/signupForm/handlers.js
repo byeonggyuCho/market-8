@@ -272,3 +272,44 @@ export const handleCheckAddress = (() => {
         }
     }
 })();
+
+
+export const handleSingupButton = (() => {
+
+    setTimeout(() => {
+        
+
+    });
+    return (event) => {
+        event.preventDefault();
+        const inputs = [...document.getElementsByTagName('input')];
+        const essentialCheck = document.querySelector('input[name=checkEssential]');
+        const adCheck = document.querySelector('input[name=checkAd');
+
+        const essentialStatue = essentialCheck.checked;
+        const adStatue = adCheck.checked;
+
+        inputs.forEach(element => {
+            element.dispatchEvent(new Event('change'));
+        });
+
+        essentialCheck.checked = essentialStatue;
+        adCheck.checked = adStatue;
+
+        const erorrInput = document.querySelector('.atom-input-false')
+        console.log(essentialCheck.checked);
+        if(erorrInput){
+            erorrInput.focus();
+            erorrInput.scrollIntoView();
+        }else if(!essentialCheck.checked){
+            alert('필수 동의를 체크해주십시오');
+            essentialCheck.focus();
+            essentialCheck.scrollIntoView();
+        }else {
+            const signupForm = document.querySelector('.molecule-signupForm');
+            signupForm.submit();
+
+        }
+    }
+})();
+
