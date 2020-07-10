@@ -1,5 +1,8 @@
 extends layout
 
+block scripts
+  link(rel='stylesheet', href='components/pages/index/styles.css')
+  script(type='module' src='components/pages/index/index.js')
+    
 block content
-  h1= title
-  p Welcome to #{title}
+  

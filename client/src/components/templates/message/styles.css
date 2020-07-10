@@ -1,0 +1,16 @@
+.msg{
+    padding: 8px 0px 16px;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.4px;
+    font-weight: normal;
+    margin: 0px;
+}
+
+.msg > p {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.4px;
+    font-weight: normal;
+    margin: 0px;
+}

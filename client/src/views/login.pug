@@ -1,0 +1,10 @@
+extends layout
+
+block scripts
+  link(rel='stylesheet', href='components/pages/login/styles.css')
+  script.
+    document.flash = "#{failureMsg}";     
+  script(type='module' src='components/pages/login/index.js')
+
+block content
+  

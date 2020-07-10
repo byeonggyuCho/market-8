@@ -1,9 +1,70 @@
-body {
-    margin: 1.5em auto;
-    max-width: 1200px;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+html *
+{
+   font-family: 'Noto Sans KR', sans-serif;
 }
+
+input {
+    float: left;
+    display: block;
+    border: 1px solid rgb(215, 219, 230);
+    margin-bottom: 8px;
+    padding: 16px 12px 12px 12px;
+    max-width: 100%;
+    height: 28px;
+    font-size: 14px;
+    font-weight: 400;
+    background-color: #fff;
+}
+
+select{
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 400;
+    max-height: 58px;
+    border: 1px solid rgb(215, 219, 230);
+    padding: 16px 12px 12px 12px;
+}
+
+img + input {
+    margin-top: 38px;
+}
+
+input:focus{
+    outline: none;
+}
+
+input::placeholder {
+    color: rgb(215, 219, 230);
+}
+
+img {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+button {
+    display: block;
+    text-align: center;
+    border: 0;
+    margin: 0;
+    padding: 22px 0 20px;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #1a7cff;
+}
+
+input[type="checkbox" i] {
+    background-color: initial;
+    cursor: default;
+    -webkit-appearance: checkbox;
+    box-sizing: border-box;
+    margin: 3px 3px 3px 4px;
+    padding: initial;
+    border: initial;
+}
+

@@ -1,0 +1,14 @@
+html{
+    height: 100%
+}
+
+body {
+    width: 330px;
+    margin: 1.5em auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    line-height:normal;
+}

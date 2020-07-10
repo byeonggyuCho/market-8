@@ -1,0 +1,16 @@
+extends layout
+
+block scripts
+  link(rel='stylesheet', href='components/pages/mypage/styles.css')
+  script.
+    const id = "#{user.id}";
+    const name = "#{user.name}";
+    const email = "#{user.email}";
+    const phoneNo = "#{user.phoneNo}";
+    document.cookie = JSON.stringify({ id, name, email, phoneNo });
+  script(type='module' src='components/pages/mypage/index.js')
+  
+
+block content
+
+  
