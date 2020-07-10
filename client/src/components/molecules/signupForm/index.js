@@ -8,6 +8,7 @@ import {
     validateId,
     validatePw,
     validateConfirmPw,
+    validateName,
     validateEmail,
     validatePhone
 } from '/components/molecules/signupForm/validator.js'
@@ -19,7 +20,8 @@ import {
     handleCheckEssential,
     handleFindAddress,
     handleCheckAddress,
-    handleForm
+    handleForm,
+    handleSingupButton
 } from '/components/molecules/signupForm/handlers.js'
 
 const emptyClass = '';
@@ -67,7 +69,7 @@ const SignupForm = () => form(
             '직접입력'
         ),
     ),
-    Input(emptyClass, 'name', '이름*', 'text'),
+    Input(emptyClass, 'name', '이름*', 'text', validateName),
     div({ className : 'button-input phone-container'},
         Input('atom-input-with-buton', 'phoneNo', '휴대폰*', 'tel', validatePhone),
         Button('atom-button-with-input phone-button atom-button-failed', '인증받기', phoneButtonHandler),
@@ -133,7 +135,7 @@ const SignupForm = () => form(
             li(emptyProperty, '14세 이상 회원만 가입 가능합니다.'),
         )
     ),
-    Button('atom-button-full signup-button', '가입완료'),
+    Button('atom-button-full signup-button', '가입완료', handleSingupButton),
 );
 
 

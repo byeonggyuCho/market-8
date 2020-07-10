@@ -22,6 +22,12 @@ const deleteSibling = (node) => {
     }
 };
 
+/** @description add false class name to input
+     * @param {Node} inputNode
+     */
+
+const inputFalseClass = ' atom-input-false'
+
 export const validateStates = {
     id: false,
     pw: false,
@@ -35,8 +41,11 @@ export const validateStates = {
 
 export const validateId = (function() {
     let isAddNode = false;
+    let defaultClassName = '';
+
     setTimeout(() => {
         const idInput = document.querySelector('input[name=id]');
+        defaultClassName = idInput.className;
         idInput.addEventListener('blur', (event) => {
             validateId(event);
         })
@@ -44,6 +53,7 @@ export const validateId = (function() {
 
     return (event) => {
         const id = event?.target?.value;
+        const idInput = event.target;
         const regex = /^[a-z0-9\_\-]{4,20}$/ // 아이디가 적합한지 정규식
         const isValitaed = regex.test(id);
 
@@ -60,18 +70,22 @@ export const validateId = (function() {
             message.className = 'atom-text-success'
             message.textContent = '입력하신 아이디로 사용이 가능합니다.';
             validateStates.id = true;
+            idInput.className = defaultClassName;
         } else {
             message.className = 'atom-text-error';
             message.textContent = '아이디는 영문과 숫자로 4자~20자 사이로 입력해 주세요';
             validateStates.id = false;
+            idInput.className = defaultClassName + ' atom-input-false';
         }        
     }
 })();
 
 export const validatePw = (function() {
     let isAddNode = false;
+    let defaultClassName = '';
     setTimeout(() => {
         const pwInput = document.querySelector('input[name=pw]');
+        defaultClassName = pwInput.className;
         pwInput.addEventListener('blur', (event) => {
             validatePw(event);
         })
@@ -82,6 +96,7 @@ export const validatePw = (function() {
         const regex = /^[a-zA-Z0-9]{8,20}$/ // 아이디가 적합한지 정규식
         const isValitaed = regex.test(pw);
         if(!isValitaed) {
+            pwInput.className = defaultClassName + ' atom-input-false';
             validateStates.pw = false;
             if(!isAddNode){
                 isAddNode = true;
@@ -91,6 +106,7 @@ export const validatePw = (function() {
                 insertAfter(messageNode, event.target);
             }
         }else {
+            pwInput.className = defaultClassName;
             validateStates.pw = true;
             if(pwInput && pwInput.nextSibling && isAddNode) {
                 pwInput.parentNode.removeChild(pwInput.nextSibling)
@@ -109,8 +125,11 @@ export const validatePw = (function() {
 
 export const validateConfirmPw = (function() {
     let isAddNode = false;
+    let defaultClassName = '';
+
     setTimeout(() => {
         const confirmPwInput = document.getElementsByName("pwConfirm")?.[0];
+        defaultClassName = confirmPwInput.className;
         confirmPwInput.addEventListener('blur', () => {
             validateConfirmPw();
         })
@@ -122,13 +141,14 @@ export const validateConfirmPw = (function() {
         const confirmPw = confirmPwInput.value;
 
         if(pw === confirmPw && confirmPw !== '') {
-            validateStates.confirmPw = true;
+            confirmPwInput.className = defaultClassName;
             if(confirmPwInput && confirmPwInput.nextSibling && isAddNode) {
                 confirmPwInput.parentNode.removeChild(confirmPwInput.nextSibling)
                 isAddNode = false;
             }
         } else {
             if(!isAddNode){
+                confirmPwInput.className = defaultClassName + ' atom-input-false';
                 isAddNode = true;
                 const messageNode = div({className: 'msg'}, 
                         Text('atom-text-error')
@@ -148,8 +168,10 @@ export const validateConfirmPw = (function() {
 
 export const validateEmail = (function() {
     let isAddNode = false;
+    let defaultClassName = '';
     setTimeout(() => {
         const emailInput = document.querySelector('input[name=emailFront]');
+        defaultClassName = emailInput.className;
         emailInput.addEventListener('blur', (event) => {
             validateEmail(event);
         })
@@ -158,8 +180,8 @@ export const validateEmail = (function() {
         const emailInput = event.target;
         const email = event?.target?.value;
         const emailContainer = document.querySelector('.emailDiv');
-        console.log(email);
         if(!email) {
+            emailInput.className = defaultClassName + inputFalseClass;
             if(!isAddNode){
                 isAddNode = true;
                 const messageNode = div({className: 'msg'}, 
@@ -168,6 +190,7 @@ export const validateEmail = (function() {
                 insertAfter(messageNode, emailContainer);
             }
         }else {
+            emailInput.className = defaultClassName;
             if(emailContainer && emailContainer.nextSibling && isAddNode) {
                 emailContainer.parentNode.removeChild(emailContainer.nextSibling)
                 isAddNode = false;
@@ -178,8 +201,10 @@ export const validateEmail = (function() {
 
 export const validateName = (function() {
     let isAddNode = false;
+    let defaultClassName = '';
     setTimeout(() => {
         const nameInput = document.querySelector('input[name=name]');
+        defaultClassName = nameInput.className;
         nameInput.addEventListener('blur', (event) => {
             validateName(event);
         })
@@ -190,11 +215,13 @@ export const validateName = (function() {
         const regex = /^[가-힣a-zA-Z]{2,20}$/; // 이름이 적합한지 정규식
         const isValitaed = regex.test(name);
         if(isValitaed) {
+            nameInput.className = defaultClassName;
             if(nameInput && nameInput.nextSibling && isAddNode) {
                 nameInput.parentNode.removeChild(nameInput.nextSibling)
                 isAddNode = false;
             }
         }else {
+            nameInput.className = defaultClassName + inputFalseClass;
             if(!isAddNode){
                 isAddNode = true;
                 const messageNode = div({className: 'msg'}, 
@@ -221,7 +248,7 @@ export const validatePhone = (function() {
     let phoneInput = null;
     let phoneButton = null;
     const defaultButtonClassName = 'atom-button-with-input phone-button';
-
+    let defaultClassName = '';
     const addErrorMessage = () => {
         if(validateStates.phoneNo) {
             deleteSibling(phoneContainer);
@@ -245,9 +272,11 @@ export const validatePhone = (function() {
         phoneButton = document.querySelector('input[name=phoneNo]+button');
         phoneContainer = document.querySelector('.phone-container');
         phoneInput = document.querySelector('input[name=phoneNo]');
+        defaultClassName = phoneInput.className;
         phoneInput.addEventListener('blur', (event) => {
             phone = phoneInput.value;
             if(!phone){
+                phoneInput.className = defaultClassName + inputFalseClass;
                 addErrorMessage();
             }
         });
@@ -255,8 +284,10 @@ export const validatePhone = (function() {
             const regex = /[0-9]/; // 폰 번호가 적합한지 validate
             const isValitaed = regex.test(event.target.value);
             if(isValitaed){
+                phoneInput.className = defaultClassName;
                 validatePhone(event);
             }else {
+                phoneInput.className = defaultClassName + inputFalseClass;
                 event.target.value = '';
             }
         })
@@ -267,6 +298,7 @@ export const validatePhone = (function() {
         const regex = /^[0-9]{3}[0-9]{4}[0-9]{4}$/; // 폰 번호가 적합한지 validate
         const isValitaed = regex.test(phone);
         if(isValitaed) {
+            phoneInput.className = defaultClassName;
             if(phoneContainer && phoneContainer.nextSibling && isAddNode) {
                 phoneContainer.parentNode.removeChild(phoneContainer.nextSibling)
                 isAddNode = false;
@@ -274,6 +306,7 @@ export const validatePhone = (function() {
             phoneButton.className = defaultButtonClassName + ' atom-button-success';
             validateStates.phoneNo = true;
         } else {
+            phoneInput.className = defaultClassName + inputFalseClass;
             phoneButton.className = defaultButtonClassName + ' atom-button-failed';
             phoneButton.innerText = '인증받기';
             addErrorMessage()
@@ -281,3 +314,4 @@ export const validatePhone = (function() {
         }
     }
 })();
+
