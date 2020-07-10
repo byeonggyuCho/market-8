@@ -26,7 +26,7 @@ const emptyClass = '';
 const emptyProperty = {};
 
 const SignupForm = () => form(
-    { className : 'molecule-signupForm', action: 'users/login', method: 'post', onclick: handleForm },
+    { className : 'molecule-signupForm', action: '/users', method: 'post', onclick: handleForm },
     Img('https://ceo.baemin.com/lockpath/images/logo-ceo.png', '배민사장님광장', 274, 40),
     Text(emptyClass, '필수 정보를 입력해주세요'),
     Input(emptyClass, 'id', '아이디* (4~20자)', 'text', validateId),
@@ -123,7 +123,7 @@ const SignupForm = () => form(
     div ({className: 'info-container'},
         div(
             {className: 'input-checkbox'},
-            Input(emptyClass, 'checkAd', '', 'checkbox'),
+            Input(emptyClass, 'isAdAgreed', '', 'checkbox'),
             label(emptyProperty, '광고성 정보 수신 동의 (선택)'),
             p({className: 'confirm-ad-info'}, '배민사장광장 회원에게 제공하는 서비스의 광고성 정보를 수신합니다.'),
         )

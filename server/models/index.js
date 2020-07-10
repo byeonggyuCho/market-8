@@ -1,7 +1,7 @@
-const Users = require("./users");
+const Users = require('./users');
 
-function initDB() {
+function init() {
     Users.init();
-};
+}
 
-module.exports = initDB;
+module.exports = init();

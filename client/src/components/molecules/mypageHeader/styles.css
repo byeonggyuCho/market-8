@@ -1,0 +1,10 @@
+@import "../../atoms/img/styles.css";
+
+.molecule-mypageHeader {
+    align-content: center;
+    width: 100%;
+    display: grid;
+    margin-bottom: 15px;
+}
+
+

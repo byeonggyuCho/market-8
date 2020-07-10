@@ -6,3 +6,23 @@
     vertical-align: middle;
     display: grid;
 }
+
+.molecule-loginColumn h3 {
+    font-weight: 400;
+}
+
+.molecule-loginColumn img {
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+.molecule-loginColumn a {
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #8e929f
+}
+
+.molecule-loginColumn .aDiv {
+    text-align: right;
+}
