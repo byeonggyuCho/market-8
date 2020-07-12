@@ -5,7 +5,7 @@ const Users = require('../models/users');
 exports.checkId = (req, res) => res.send({ isDup : !!Users.getById(req.params) });
 exports.createUser = async (req, res) => {
     const input = req.body;
-    input.pw = await bcrypt.hash(input.pw, process.env.SALT);
+    input.pw = await bcrypt.hash(input.pw, process.env.SALTROUNDS);
     if(input.emailFront && input.emailRear) input.email = `${input.emailFront}@${input.emailRear}`;
     const user = Users.create(input);
     const { id, name, email, phoneNo } = user;

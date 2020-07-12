@@ -1,13 +1,12 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
+const session = require('express-session');
 const logger = require('morgan');
-const cookieParser = require('cookie-parser');
-const cookieSession = require('cookie-session');
 const passport = require('passport');
 const flash = require('connect-flash');
 
-require('dotenv').config()
+require('dotenv').config();
 require('./models');
 
 const indexRouter = require('./routes/index');
@@ -18,25 +17,23 @@ const app = express();
 app.set('views', path.join(__dirname, '../client/src/views'));
 app.set('view engine', 'pug');
 
-
-app.use(cookieSession({
-  keys: ['배민상회'],
-  cookie: {
-    maxAge: 1000 * 60 * 60, // 유효기간 1시간
-    secure: true,
-  }
-}));
-
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/src')));
+app.use(session({
+  resave : false,
+  saveUninitialized : false, 
+  secret: process.env.SESSION_SECRET,
+}));
 app.use(flash());
+app.use(logger('dev'));
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', indexRouter);
+
+// catch 404 and forward to error handler
+app.use((req, res, next) => next(createError(404)));
 
 // error handler
 app.use((err, req, res, next) => {

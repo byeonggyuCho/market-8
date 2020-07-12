@@ -1,5 +1,5 @@
 const express = require('express');
-const { isAuthenticated } = require('../utils/passport');
+const { isAuthenticated } = require('../utils/auth');
 
 const router = express.Router();
 const apiRouter = require('./api/index');
