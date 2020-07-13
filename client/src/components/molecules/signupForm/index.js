@@ -28,7 +28,7 @@ const emptyClass = '';
 const emptyProperty = {};
 
 const SignupForm = () => form(
-    { className : 'molecule-signupForm', action: '/users', method: 'post', onclick: handleForm },
+    { className : 'molecule-signupForm', action: 'api/users', method: 'post', onclick: handleForm },
     Img('https://ceo.baemin.com/lockpath/images/logo-ceo.png', '배민사장님광장', 274, 40),
     Text(emptyClass, '필수 정보를 입력해주세요'),
     Input(emptyClass, 'id', '아이디* (4~20자)', 'text', validateId),
