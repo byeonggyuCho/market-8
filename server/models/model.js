@@ -27,10 +27,7 @@ class Model {
 
     static validate = function(item) {
         const data = {};
-        console.log(this.attributesTypes);
         for (const [key, value] of Object.entries(item)) {
-            console.log(key);
-            console.log(value);
             if(!this.attributesTypes[key] || !value) continue;
 
             switch(this.attributesTypes[key]){
@@ -55,7 +52,6 @@ class Model {
     static getById = (id) => this.items.find(item => item.id === id);   
 
     static create = function (item) {
-        console.log('items', this.items);
         const validatedItem = this.validate(item);
         this.items.push(validatedItem);
         this.write();

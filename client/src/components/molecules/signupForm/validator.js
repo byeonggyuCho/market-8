@@ -52,7 +52,7 @@ export const validateId = (function() {
     });
 
     const checkDuplicateId = async (id) => {
-        const res = await fetch(`users/id/${id}`);
+        const res = await fetch(`api/users/id/${id}`);
         const body = await res.json();
         return body.isDup;
     }

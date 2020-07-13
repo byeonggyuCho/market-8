@@ -25,4 +25,13 @@ function isAuthenticated(req, res, next){
     return res.redirect('/login');
 }
 
-module.exports = { passport, isAuthenticated };
+const authenticate = passport.authenticate('local', { 
+        successRedirect: '/mypage',
+        failureRedirect: '/login',
+        failureFlash: true 
+});
+
+
+    
+
+module.exports = { authenticate, isAuthenticated };

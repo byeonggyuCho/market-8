@@ -1,18 +1,17 @@
 const bcrypt = require('bcrypt');
+const url = require('url');
 const Users = require('../models/users');
 
+exports.checkId = (req, res) => res.send({ isDup : !!Users.getById(req.params) });
 exports.createUser = async (req, res) => {
     const input = req.body;
-    input.pw = await bcrypt.hash(input.pw, 10);
+    input.pw = await bcrypt.hash(input.pw, process.env.SALTROUNDS);
     if(input.emailFront && input.emailRear) input.email = `${input.emailFront}@${input.emailRear}`;
     const user = Users.create(input);
-    console.log(user);
     const { id, name, email, phoneNo } = user;
-    console.log(id, name, email, phoneNo);
-    res.render('confirm', { user : { id, name, email, phoneNo } });
+    res.redirect(url.format({ 
+        pathname: '/confirm', 
+        query: { id, name, email, phoneNo },
+    }));
 }
 
-exports.checkId = (req, res) => {
-    const { id } = req.params;
-    res.send({ isDup : !!Users.getById(id) });
-}
